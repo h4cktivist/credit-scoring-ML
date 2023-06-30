@@ -3,7 +3,8 @@
 
 ## 📂 Файлы
 [_Ссылка на датасет_](https://github.com/evgpat/stepik_from_idea_to_mvp/blob/main/datasets/credit_scoring.csv) |
-[_Ссылка pickle-файл модели_](https://drive.google.com/uc?export=download&id=13TLGYSEBtBiS179Vlmtq0lyXVdWelLvr)
+[_Ссылка pickle-файл модели_](https://drive.google.com/uc?export=download&id=13TLGYSEBtBiS179Vlmtq0lyXVdWelLvr) |
+[_Ссылка на streamlit-приложение_](https://credit-scoring-ml.streamlit.app/)
 - `Credit_scoring.ipynb`: главеный ноутбук проекта, в котором проводился анализ данных и построение модели
 - `streamlit_app\app.py`: главный файл приложения streamlit для запуска веб-интерфейса модели
 - `streamlit_app\model.py`: скрипт, в котором происходит загрузка модели и предсказание целевой переменной
