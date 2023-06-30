@@ -7,7 +7,7 @@ from model import make_prediction
 
 
 def show_main_page():
-    image = Image.open('./images/money.png')
+    image = Image.open('streamlit_app/images/money.png')
     st.set_page_config(
         layout='wide',
         initial_sidebar_state='auto',
