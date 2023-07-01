@@ -66,8 +66,12 @@ def input_user_data():
 
     age_group = get_age_group(age)
     cred_group = get_cred_group(num_of_creds)
-    debt_ratio = float(m_expenses) / float(m_income)
-    rev_util = float(cred_rem) / float(cred_lims)
+    try:
+        debt_ratio = float(m_expenses) / float(m_income)
+        rev_util = float(cred_rem) / float(cred_lims)
+    except ZeroDivisionError:
+        rev_util, debt_ratio = 0, 0
+        st.warning('Ежемесячные доходы/расходы, остаток по кредитам и сумма кредитных лимитов должны быть больше 0.')
 
     data = {
         'RevolvingUtilizationOfUnsecuredLines': rev_util,
