@@ -55,12 +55,12 @@ def input_user_data():
     cred_lims = st.sidebar.text_input('Сумма размеров лимитов по кредитам', value=1)
     num_of_creds = st.sidebar.slider('Кол-во открытых кредитов', min_value=0, max_value=100, value=0, step=1)
     past_due_59 = st.sidebar.slider('Сколько раз за последние 2 года Вы задержали выплату по кредиту на 30-59 дней?',
-                                    min_value=0, max_value=100, value=0, step=1)
+                                    min_value=0, max_value=25, value=0, step=1)
     past_due_89 = st.sidebar.slider('Сколько раз за последние 2 года Вы задержали выплату по кредиту на 60-89 дней?',
-                                    min_value=0, max_value=100, value=0, step=1)
+                                    min_value=0, max_value=12, value=0, step=1)
     past_due_90 = st.sidebar.slider(
         'Сколько раз за последние 2 года Вы задержали выплату по кредиту более, чем на 90 дней?',
-        min_value=0, max_value=100, value=0, step=1)
+        min_value=0, max_value=10, value=0, step=1)
     num_of_deps = st.sidebar.slider('Кол-во иждивенцев на попечении (супруги, дети и др.)',
                                     min_value=0, max_value=30, value=0, step=1)
 
