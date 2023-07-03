@@ -17,7 +17,7 @@ def show_main_page():
 
     t1, t2 = st.columns((0.13, 1))
     t1.image(image, width=120)
-    t2.title('Модель машинного обучения для прогнозирования риска просрочки у клиента некоторого банка')
+    t2.title('Machine learning service for predicting the risk of payment delinquency of a bank customer')
 
 
 def get_age_group(age):
@@ -47,21 +47,21 @@ def get_cred_group(num_of_creds):
 
 
 def input_user_data():
-    st.sidebar.header('Введите данные о Вас и узнайте, будет ли Вам выдан кредит!')
-    age = st.sidebar.slider('Возраст', min_value=18, max_value=100, value=18, step=1)
-    m_income = st.sidebar.text_input('Доход в месяц', value=1)
-    m_expenses = st.sidebar.text_input('Ежемесячные расходы', value=1)
-    cred_rem = st.sidebar.text_input('Общий остаток по кредитам', value=1)
-    cred_lims = st.sidebar.text_input('Сумма размеров лимитов по кредитам', value=1)
-    num_of_creds = st.sidebar.slider('Кол-во открытых кредитов', min_value=0, max_value=100, value=0, step=1)
-    past_due_59 = st.sidebar.slider('Сколько раз за последние 2 года Вы задержали выплату по кредиту на 30-59 дней?',
+    st.sidebar.header('Enter your information and find out if you will be granted credit!')
+    age = st.sidebar.slider('Age', min_value=18, max_value=100, value=18, step=1)
+    m_income = st.sidebar.text_input('Monthly income', value=1)
+    m_expenses = st.sidebar.text_input('Monthly expenses', value=1)
+    cred_rem = st.sidebar.text_input('Total credit balance', value=1)
+    cred_lims = st.sidebar.text_input('The amount of credit limits', value=1)
+    num_of_creds = st.sidebar.slider('Number of open loans', min_value=0, max_value=100, value=0, step=1)
+    past_due_59 = st.sidebar.slider('How many times in the last 2 years have you been 30-59 days late on a loan?',
                                     min_value=0, max_value=25, value=0, step=1)
-    past_due_89 = st.sidebar.slider('Сколько раз за последние 2 года Вы задержали выплату по кредиту на 60-89 дней?',
+    past_due_89 = st.sidebar.slider('How many times in the last 2 years have you been 60-89 days late on a loan?',
                                     min_value=0, max_value=12, value=0, step=1)
     past_due_90 = st.sidebar.slider(
-        'Сколько раз за последние 2 года Вы задержали выплату по кредиту более, чем на 90 дней?',
+        'How many times in the last 2 years have you been more than 90 days late on a loan?',
         min_value=0, max_value=10, value=0, step=1)
-    num_of_deps = st.sidebar.slider('Кол-во иждивенцев на попечении (супруги, дети и др.)',
+    num_of_deps = st.sidebar.slider('Number of dependents (spouses, children, etc.)',
                                     min_value=0, max_value=30, value=0, step=1)
 
     age_group = get_age_group(age)
@@ -71,7 +71,7 @@ def input_user_data():
         rev_util = float(cred_rem) / float(cred_lims)
     except ZeroDivisionError:
         rev_util, debt_ratio = 0, 0
-        st.warning('Ежемесячные доходы/расходы, остаток по кредитам и сумма кредитных лимитов должны быть больше 0.')
+        st.warning('Monthly income/expenses, loan balance and the amount of credit limits must be greater than 0.')
 
     data = {
         'RevolvingUtilizationOfUnsecuredLines': rev_util,
@@ -88,7 +88,7 @@ def input_user_data():
     }
     df = pd.DataFrame(data, index=[0])
 
-    st.write('## Ваши данные:')
+    st.write('## The data you entered:')
     st.write(df[[col for col in df.columns[:7]]])
     st.write(df[[col for col in df.columns[7:]]])
 
@@ -97,12 +97,12 @@ def input_user_data():
 
 def wirte_prediction():
     df = input_user_data()
-    if st.button('Предсказать!'):
-        with st.spinner('Предсказываем...'):
+    if st.button('Predict!'):
+        with st.spinner('Predicting...'):
             pred, prob = make_prediction(df)
-            st.write('## Предсказание:')
+            st.write('## Prediction:')
             st.write(f'### {pred}')
-            st.write(f'Вероятность того, что Вы просрочите выплату на более, чем 90 дней: {round(prob, 2) * 100}%')
+            st.write(f'Probability that you will be more than 90 days overdue is {round(prob, 2) * 100}%')
 
 
 if __name__ == '__main__':
