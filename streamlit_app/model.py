@@ -18,8 +18,8 @@ def make_prediction(df):
     classes = probs[:, 1] > 0.39074379276042953
 
     result_classes = {
-        False: 'Поздравляем, Вам будет выдан кредит!',
-        True: 'К сожалению, кредит Вам выдан не будет.'
+        False: 'Congratulations, you will be granted a loan!',
+        True: 'Unfortunately, you will not be given a loan.'
     }
 
     prediction = result_classes[classes[0]]
